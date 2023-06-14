@@ -56,7 +56,7 @@ function Navbar() {
             <AppBar sx={{ backgroundColor: 'white' }}>
                 <Toolbar>
                     <Typography sx={{ color: '#e80071' }}>
-                        NYKAaaaaa
+                        NYKAA
                     </Typography>
                     <Tabs>
                         {menuarr.map((menu, i) => {
