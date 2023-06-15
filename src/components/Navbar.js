@@ -4,12 +4,9 @@ import { AppBar, Button, Tab, Tabs, Toolbar, Typography} from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import {FaShoppingCart} from "react-icons/fa"
-import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
 
-    const navigate=useNavigate()
     const menuarr = ['categories', 'Brand', 'nyka fashion', 'beauty advice']
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -53,16 +50,13 @@ function Navbar() {
         },
       }));
       
-      const handleLogin=()=>{
-        navigate('/login')
-      }
 
     return (
         <div>
             <AppBar sx={{ backgroundColor: 'white' }}>
                 <Toolbar>
                     <Typography sx={{ color: '#e80071' }}>
-                        NYKAA
+                        NYKAA By Neha
                     </Typography>
                     <Tabs>
                         {menuarr.map((menu, i) => {
@@ -79,8 +73,7 @@ function Navbar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
-                    <Button sx={{ marginLeft: "15px" }} onClick={handleLogin} variant='contained'>Login</Button>
-                      <FaShoppingCart style={{color:'black',fontSize:'20px',margin:'0 10px 0 10px'}}/>
+                    <Button variant='contained' sx={{ backgroundColor: '#e80071',marginLeft:'2%' }} >Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
