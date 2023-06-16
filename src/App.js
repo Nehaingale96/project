@@ -9,8 +9,10 @@ import { useState } from "react";
 
 function App() {
 
-  const[product,setProduct]=useState({})
-
+  // const[product,setProduct]=useState({})
+  const [data, setData] = useState([]);
+  const [islogin, setisLogin] = useState(false)
+  const baseUrl = "http://localhost:3000/"
   return (
     // <div>
     //   {/* <Navbar/> */}
@@ -21,11 +23,12 @@ function App() {
 
     <>
     <BrowserRouter>
-    <Navbar/>
+    <Navbar islogin={islogin} setisLogin={setisLogin}/>
 
     <Routes>
-          <Route path="/" element={<Product setProduct={setProduct} /> }/>
-          <Route path="productdetails" element={<ProductDetails product={product}/>}></Route>
+          {islogin && <Route path="/" element={<Product data={data} setData={setData} /> }/>}
+          <Route path="/login" element={<User baseUrl={baseUrl} setisLogin={setisLogin}/> }/>
+          <Route path="products/:id" element={<ProductDetails data={data} setData={setData} />}></Route>
     </Routes>
     </BrowserRouter>
 

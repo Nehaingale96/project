@@ -23,9 +23,12 @@
 
 
 import { Box, Button, TextField, Typography } from '@mui/material'
+import { dark } from '@mui/material/styles/createPalette'
+import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 
-function MuiForm() {
+function MuiForm({baseUrl,setisLogin}) {
     const [isSignup, setIsSignup] = useState(false)
     const [formData, setFormData] = useState({
         username: "",
@@ -33,21 +36,52 @@ function MuiForm() {
         password: ""
     })
 
+    const usenavigate = useNavigate()
+    
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(formData);
+        console.log(baseUrl);
+        if(isSignup){
+            postUser(formData)
+            alert('User Created successfully now login')
+            setIsSignup(false)
+        }
+        else{
+            login()
+        }
     }
 
     const handleChange = (e) => {
         setFormData((prev) => ({
             ...prev, [e.target.name]: e.target.value
         }))
+        
     }
 
     const handleSwitch = () => {
         setIsSignup(!isSignup)
     }
-   
+ 
+    const postUser = (obj) =>{
+        const {data} =  axios.post(`${baseUrl}users`,obj)
+    }
+
+    const login = () =>{
+        axios.get(`${baseUrl}users`).then((response)=>{
+            	response.data.find((info)=>{
+                if (info.email === formData.email && info.password === formData.password){
+                    setisLogin(true)
+                    usenavigate('/')
+                    alert('Login Successful')
+                }
+                else if((info.email !== formData.email && info.password !== formData.password)){
+                    alert('Enter valid credentials')
+                }
+            })
+        })
+        
+    }
 
     return (
         <>

@@ -2,17 +2,22 @@ import React, { useEffect } from 'react'
 import { data } from './Data'
 import "./product.css"
 import { useNavigate } from 'react-router'
+import axios from "axios"
 
 
-function Product({setProduct}) {
-
-
-   
+function Product({data,setData}) {
+    const baseUrl = 'http://localhost:3000/students/'
     const navigate=useNavigate()
+    const getData = async () => {
+        const { data } = await axios.get(baseUrl);
+        setData(data);
+        console.log(data)
+    };
+    useEffect(()=>{
+        getData()
+    },[])
     const handleClick=(i)=>{
-        navigate('/productdetails')
-        setProduct(i)
-
+        navigate(`products/${i.id}`)
     }
    
 

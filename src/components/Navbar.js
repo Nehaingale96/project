@@ -7,7 +7,7 @@ import InputBase from '@mui/material/InputBase';
 import {FaShoppingCart} from "react-icons/fa"
 import { useNavigate } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({islogin,setisLogin}) {
   const navigate=useNavigate()
 
     const menuarr = ['categories', 'Brand', 'nyka fashion', 'beauty advice']
@@ -56,7 +56,9 @@ function Navbar() {
         navigate('/login')
       }
 
-
+      const navigateHome = () =>{
+        navigate('/')
+      }
       
       
 
@@ -64,7 +66,7 @@ function Navbar() {
         <div>
             <AppBar sx={{ backgroundColor: 'white' }}>
                 <Toolbar>
-                    <Typography sx={{ color: '#e80071' }}>
+                    <Typography sx={{ color: '#e80071' }} onClick={navigateHome}>
                         NYKAA
                     </Typography>
                     <Tabs>
@@ -82,7 +84,8 @@ function Navbar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
-                    <Button sx={{ marginLeft: "15px" }} onClick={handleLogin} variant='contained'>Login</Button>
+                    {!islogin?<Button sx={{ marginLeft: "15px" }} onClick={handleLogin} variant='contained'>Login</Button>:<span style={{color:"black"}}>Welcome User..!!!</span>}
+                    
                       <FaShoppingCart style={{color:'black',fontSize:'20px',margin:'0 10px 0 10px'}}/>
                 </Toolbar>
             </AppBar>
