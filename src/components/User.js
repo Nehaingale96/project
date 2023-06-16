@@ -42,6 +42,8 @@ function MuiForm({baseUrl,setisLogin}) {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(baseUrl);
+        console.log(formData)
+        console.log(e.target.value)
         if(isSignup){
             postUser(formData)
             alert('User Created successfully now login')

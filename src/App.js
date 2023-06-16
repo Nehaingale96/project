@@ -11,6 +11,7 @@ function App() {
 
   // const[product,setProduct]=useState({})
   const [data, setData] = useState([]);
+  const [detailData, setdetailData] = useState([]);
   const [islogin, setisLogin] = useState(false)
   const baseUrl = "http://localhost:3000/"
   return (
@@ -26,9 +27,9 @@ function App() {
     <Navbar islogin={islogin} setisLogin={setisLogin}/>
 
     <Routes>
-          {islogin && <Route path="/" element={<Product data={data} setData={setData} /> }/>}
+           <Route path="/" element={<Product data={data} setData={setData} /> }/>
           <Route path="/login" element={<User baseUrl={baseUrl} setisLogin={setisLogin}/> }/>
-          <Route path="products/:id" element={<ProductDetails data={data} setData={setData} />}></Route>
+          <Route path="products/:id" element={<ProductDetails data={detailData} setData={setdetailData} />}></Route>
     </Routes>
     </BrowserRouter>
 

@@ -133,6 +133,12 @@
       "email": "ritesh@g.com",
       "password": "123456",
       "id": 1
+    },
+    {
+      "username": "abc",
+      "email": "abc@gmail.com",
+      "password": "123456789+",
+      "id": 2
     }
   ]
 }
