@@ -1,47 +1,40 @@
-import React from 'react'
+import React from "react";
 import { useState, useEffect } from "react";
-import "./productDetails.css"
-import {useParams} from "react-router-dom"
-import axios from "axios"
-import { data } from './Data';
-import { PanoramaFishEyeTwoTone } from '@mui/icons-material';
+import "./productDetails.css";
+import { json, useParams } from "react-router-dom";
+import axios from "axios";
 
-function ProductDetails({data,setData}) {
-  const baseUrl = 'http://localhost:3000/students/'
- 
-  const [pData,setPdata]=useState()
+function ProductDetails() {
+  const baseUrl = "http://localhost:3000/students/";
 
-  const param = new useParams()
-  console.log(PanoramaFishEyeTwoTone)
+  const [data, setData] = useState({});
+
+  const { id } = new useParams();
 
   const getDataperId = async () => {
-    const { data } = await axios.get(baseUrl+param.id);
+    const { data } = await axios.get(`${baseUrl}${id}`);
     setData(data);
-    console.log("demo")
-    setPdata(data)
-    console.log(data.title.longTitle)
   };
-  console.log(pData)
-  useEffect(()=>{
-    getDataperId()
-  },[])
-  
+
+  useEffect(() => {
+    getDataperId();
+  }, []);
+
   return (
-    <div className='productWrapper'>
-        <div className='leftWrapper'>
-            {/* <img src={pData.url}/> */}
-            <div className='buttonWrapper'>
-                <button className='btn'>Add To Cart</button>
-                <button className='btn'>Buy Now</button>
-            </div>
+    <div className="productWrapper">
+      <div className="leftWrapper">
+        <img src={data.url} />
+        <div className="buttonWrapper">
+          <button className="btn">Add To Cart</button>
+          <button className="btn">Buy Now</button>
         </div>
-        <div className="rightWrapper">
-          {/* <h1>{JSON.stringify(data.title["longTitle"])}</h1> */}
-          {/* <h1>{pData.title.longTitle}</h1> */}
-        </div>
-        
+      </div>
+      <div className="rightWrapper">
+        <h1>{data.discount}</h1>
+        <h1>{data?.title?.longTitle}</h1>
+      </div>
     </div>
-  )
+  );
 }
 
-export default ProductDetails
+export default ProductDetails;
